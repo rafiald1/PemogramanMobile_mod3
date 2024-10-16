@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:praktikum_mod_1/app/recipeView/views/recipe_view.dart';
+import 'package:praktikum_mod_1/app/routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 import 'dart:io';
 
@@ -82,23 +84,39 @@ class LoginView extends GetView<LoginController> {
                     children: [
                       Expanded(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image(
-                            image: AssetImage(
-                                'assets/rekomen1.jpg'), // Gambar menu pertama
-                            fit: BoxFit.cover,
+                          child: GestureDetector(
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/rekomen1.jpg'), // Gambar menu pertama
+                              fit: BoxFit.cover,
+                            ),
+                            onTap: () {
+                              Get.to(RecipeView(
+                                  url:
+                                      'https://cookpad.com/id/cari/nasi%20goreng'));
+                              // Aksi saat tombol 'Lebih banyak' ditekan
+                            },
                           ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                       const SizedBox(width: 16.0),
                       Expanded(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image(
-                            image: AssetImage(
-                                'assets/cover.jpg'), // Gambar menu kedua
-                            fit: BoxFit.cover,
+                          child: GestureDetector(
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/cover.jpg'), // Gambar menu pertama
+                              fit: BoxFit.cover,
+                            ),
+                            onTap: () {
+                              Get.to(RecipeView(
+                                  url:
+                                      'https://cookpad.com/id/cari/bubur%20ayam'));
+                              // Aksi saat tombol 'Lebih banyak' ditekan
+                            },
                           ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],
@@ -106,7 +124,7 @@ class LoginView extends GetView<LoginController> {
                   const SizedBox(height: 5.0),
                   TextButton(
                     onPressed: () {
-                      // Aksi saat tombol 'Lebih banyak' ditekan
+                      Get.toNamed(Routes.HTTP);
                     },
                     child: const Text('Lebih banyak'),
                   ),
