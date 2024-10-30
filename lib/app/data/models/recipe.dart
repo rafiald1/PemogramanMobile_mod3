@@ -186,8 +186,6 @@ class Recipe {
       };
 }
 
-// ... (Class lainnya tetap sama)
-
 class AnalyzedInstruction {
   String name;
   List<Step> steps;

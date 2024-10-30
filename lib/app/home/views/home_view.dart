@@ -3,17 +3,18 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:praktikum_mod_1/app/recipeView/views/recipe_view.dart';
 import 'package:praktikum_mod_1/app/routes/app_pages.dart';
-import '../controllers/login_controller.dart';
+import '../../modules/login/controllers/auth_controller.dart';
+import '../controllers/home_controller.dart';
 import 'dart:io';
 
-class LoginView extends GetView<LoginController> {
+class HomeView extends GetView<HomeController> {
+  const HomeView({super.key});
+
   Future getImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? imagePicked =
         await picker.pickImage(source: ImageSource.gallery);
   }
-
-  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,18 @@ class LoginView extends GetView<LoginController> {
       appBar: AppBar(
         title: const Text('NusaBites'),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              // Memanggil fungsi logout dari AuthController
+              Get.find<AuthController>().logout();
+              Get.offAllNamed(
+                  '/login'); // Arahkan ke halaman login setelah logout
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -106,7 +119,7 @@ class LoginView extends GetView<LoginController> {
                           child: GestureDetector(
                             child: Image(
                               image: AssetImage(
-                                  'assets/cover.jpg'), // Gambar menu pertama
+                                  'assets/cover.jpg'), // Gambar menu kedua
                               fit: BoxFit.cover,
                             ),
                             onTap: () {
