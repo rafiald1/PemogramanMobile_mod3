@@ -25,12 +25,10 @@ class HomeView extends GetView<HomeController> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () {
-              // Memanggil fungsi logout dari AuthController
               Get.find<AuthController>().logout();
-              Get.offAllNamed(
-                  '/login'); // Arahkan ke halaman login setelah logout
+              Get.offAllNamed('/login');
             },
           ),
         ],
@@ -50,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Mau resep apa bro?',
                         border: InputBorder.none,
                         icon: Icon(Icons.search),
@@ -60,8 +58,8 @@ class HomeView extends GetView<HomeController> {
                   const SizedBox(height: 16.0),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image(
-                      image: AssetImage('assets/recomend2.jpg'), // Gambar utama
+                    child: const Image(
+                      image: AssetImage('assets/recomend2.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -98,16 +96,14 @@ class HomeView extends GetView<HomeController> {
                       Expanded(
                         child: ClipRRect(
                           child: GestureDetector(
-                            child: Image(
-                              image: AssetImage(
-                                  'assets/rekomen1.jpg'), // Gambar menu pertama
+                            child: const Image(
+                              image: AssetImage('assets/rekomen1.jpg'),
                               fit: BoxFit.cover,
                             ),
                             onTap: () {
                               Get.to(RecipeView(
                                   url:
                                       'https://cookpad.com/id/cari/nasi%20goreng'));
-                              // Aksi saat tombol 'Lebih banyak' ditekan
                             },
                           ),
                           borderRadius: BorderRadius.circular(8.0),
@@ -117,16 +113,14 @@ class HomeView extends GetView<HomeController> {
                       Expanded(
                         child: ClipRRect(
                           child: GestureDetector(
-                            child: Image(
-                              image: AssetImage(
-                                  'assets/cover.jpg'), // Gambar menu kedua
+                            child: const Image(
+                              image: AssetImage('assets/cover.jpg'),
                               fit: BoxFit.cover,
                             ),
                             onTap: () {
                               Get.to(RecipeView(
                                   url:
                                       'https://cookpad.com/id/cari/bubur%20ayam'));
-                              // Aksi saat tombol 'Lebih banyak' ditekan
                             },
                           ),
                           borderRadius: BorderRadius.circular(8.0),
@@ -166,7 +160,6 @@ class HomeView extends GetView<HomeController> {
                       if (image != null) {
                         File imageFile = File(image.path);
 
-                        // Lakukan sesuatu dengan gambar yang dipilih, misalnya menampilkan di UI
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -211,6 +204,14 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.CRUD); // Navigasi ke halaman tambah resep
+        },
+        child: const Icon(Icons.add),
+        tooltip: 'Tambah Resep',
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
